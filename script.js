@@ -14,7 +14,7 @@ form.addEventListener("submit", function (e) {
 💼 Должность: ${position}
 `;
 
-  fetch("https://api.telegram.org/bot8549707158:AAEti3VxFm1fW0x9pmgacNcUfeDWbnXsMJE/sendMessage", {
+  fetch("https://api.telegram.org/bot8549707158:AAHZcjYx1QbfVA8rWv39WsuZeBoMDIM83M8/sendMessage", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -36,3 +36,4 @@ form.addEventListener("submit", function (e) {
       alert("Ошибка соединения.");
     });
 });
+
