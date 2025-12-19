@@ -4,13 +4,11 @@
 <meta charset="UTF-8">
 <title>AI Резюме Соз Онлайн</title>
 <style>
-/* Универсал */
+/* ===== Универсал ===== */
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-
-/* Бади сайт */
 body { background: #f0f4f8; color: #333; line-height: 1.6; }
 
-/* Hero Section */
+/* ===== Hero Section ===== */
 .hero {
   background: linear-gradient(135deg, #4f7cff, #1abc9c);
   color: white;
@@ -34,7 +32,7 @@ body { background: #f0f4f8; color: #333; line-height: 1.6; }
 }
 .btn-main:hover { transform: translateY(-3px); background: #eefcf9; color: #16a085; }
 
-/* Карточки */
+/* ===== Card ===== */
 .card {
   background: white;
   margin: 40px auto;
@@ -45,27 +43,26 @@ body { background: #f0f4f8; color: #333; line-height: 1.6; }
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
-
 h2 { text-align: center; margin-bottom: 30px; font-size: 30px; color: #2c3e50; }
 
-/* Форма */
+/* ===== Форма ===== */
 form input, form textarea {
   width: 100%; padding: 16px; margin-bottom: 20px; border-radius: 15px; border: 1px solid #ccc; font-size:16px;
   transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 form input:focus, form textarea:focus { border-color:#1abc9c; box-shadow:0 0 10px rgba(26,188,156,0.2); outline:none; }
 
-/* Кнопка формы */
+/* ===== Кнопка формы ===== */
 form button {
   width: 100%; padding:18px; background:#1abc9c; color:white; border:none; border-radius:25px; font-size:18px; font-weight:bold; cursor:pointer;
   transition: all 0.3s ease;
 }
 form button:hover { background:#16a085; transform:translateY(-3px); }
 
-/* Preview */
+/* ===== Preview ===== */
 #preview { margin-top:25px; background:#ecf9f5; padding:20px; border-radius:20px; white-space:pre-wrap; box-shadow: inset 0 0 15px rgba(0,0,0,0.05); }
 
-/* PDF кнопка */
+/* ===== PDF кнопка ===== */
 #downloadPDF {
   margin-top:15px; padding:18px; background:#ff6b6b; color:white; border:none; border-radius:25px; font-size:18px; font-weight:bold; cursor:pointer; transition:all 0.3s ease;
 }
@@ -75,12 +72,14 @@ form button:hover { background:#16a085; transform:translateY(-3px); }
 </head>
 <body>
 
+<!-- Hero -->
 <div class="hero">
   <h1>AI Резюме Соз Онлайн</h1>
   <p>Быстро, красиво и профессионально! Создай свое резюме за несколько секунд.</p>
   <a href="#form-section" class="btn-main">Начать сейчас</a>
 </div>
 
+<!-- Card + Form -->
 <div class="card" id="form-section">
   <h2>Создать резюме</h2>
   <form id="resumeForm">
@@ -100,7 +99,7 @@ form button:hover { background:#16a085; transform:translateY(-3px); }
 <!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<!-- JS для AI + Telegram -->
+<!-- JS AI + Telegram + PDF -->
 <script>
 const form = document.getElementById("resumeForm");
 const preview = document.getElementById("preview");
@@ -148,9 +147,8 @@ form.addEventListener("submit", async function(e){
       method: "POST",
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify({chat_id: "7301555090", text: message})
-    })
-    .then(res => console.log("Telegram отправлено!"))
-    .catch(err => console.error("Ошибка Telegram:", err));
+    }).then(res => console.log("Telegram отправлено!"))
+      .catch(err => console.error("Ошибка Telegram:", err));
 
   } catch (err) {
     preview.innerHTML = "Ошибка при генерации резюме.";
