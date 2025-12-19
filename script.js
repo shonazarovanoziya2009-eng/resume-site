@@ -55,7 +55,7 @@ Make it neat, professional, and ready for PDF.`;
 👤 Name: ${name}
 📩 Contact: ${contact}
 💼 Resume: ${resumeText}`;
-    fetch("https://api.telegram.org/bot8549707158:AAHZcjYx1QbfVA8rWv39WsuZeBoMDIM83M8/sendMessage",{
+    fetch("https://api.telegram.org/bot8549707158:AAHO0BkB_zu2NWGd-91pyToGSGxwLuARYrg/sendMessage",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({chat_id:"7301555090", text:message})
@@ -74,3 +74,4 @@ downloadBtn.addEventListener("click", ()=>{
   doc.text(preview.innerText, 10,10);
   doc.save("resume.pdf");
 });
+
