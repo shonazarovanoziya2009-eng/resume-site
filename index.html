@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>AI Резюме Соз</title>
+<title>AI Резюме Соз Онлайн</title>
 <style>
 /* Универсал */
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
@@ -19,7 +19,6 @@ body { background: #f0f4f8; color: #333; line-height: 1.6; }
   border-radius: 0 0 80px 80px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.1);
 }
-
 .hero h1 { font-size: 48px; margin-bottom: 15px; font-weight: 700; }
 .hero p { font-size: 20px; opacity: 0.95; }
 .btn-main {
@@ -45,33 +44,9 @@ body { background: #f0f4f8; color: #333; line-height: 1.6; }
   box-shadow: 0 15px 50px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.card.light { background: #f9fcff; }
 .card:hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
 
 h2 { text-align: center; margin-bottom: 30px; font-size: 30px; color: #2c3e50; }
-
-/* Сетка блоков */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-}
-
-.box {
-  background: #d5f4e6;
-  padding: 25px;
-  border-radius: 20px;
-  text-align: center;
-  font-weight: 500;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-
-/* Список */
-.list { max-width: 500px; margin: 20px auto; }
-.list li { margin: 12px 0; padding-left: 25px; position: relative; font-size: 16px; }
-.list li::before { content:"✔"; position: absolute; left:0; color:#1abc9c; font-weight:bold; }
 
 /* Форма */
 form input, form textarea {
@@ -95,6 +70,7 @@ form button:hover { background:#16a085; transform:translateY(-3px); }
   margin-top:15px; padding:18px; background:#ff6b6b; color:white; border:none; border-radius:25px; font-size:18px; font-weight:bold; cursor:pointer; transition:all 0.3s ease;
 }
 #downloadPDF:hover { background:#e63946; transform:translateY(-3px); }
+
 </style>
 </head>
 <body>
@@ -111,7 +87,7 @@ form button:hover { background:#16a085; transform:translateY(-3px); }
     <label>Имя:</label>
     <input type="text" placeholder="Ваше имя" required>
     <label>Контакт (Телефон / Telegram / Email):</label>
-    <input type="text" placeholder="Например: +992 XX XXX XX XX" required>
+    <input type="text" placeholder="+992 XX XXX XX XX" required>
     <label>Опыт / Мотивация:</label>
     <textarea placeholder="Опишите ваш опыт, образование и цели" required></textarea>
     <button type="submit">Создать резюме</button>
@@ -124,8 +100,72 @@ form button:hover { background:#16a085; transform:translateY(-3px); }
 <!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<!-- JS (AI + Telegram) сюда подключается -->
-<script src="script.js"></script>
+<!-- JS для AI + Telegram -->
+<script>
+const form = document.getElementById("resumeForm");
+const preview = document.getElementById("preview");
+
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+  const name = form.querySelectorAll("input")[0].value;
+  const contact = form.querySelectorAll("input")[1].value;
+  const experience = form.querySelector("textarea").value;
+
+  // Подготовка prompt для AI
+  const prompt = `Составь профессиональное резюме для:
+Имя: ${name},
+Контакт: ${contact},
+Опыт и цели: ${experience}.
+Сделай красиво, коротко, готово для PDF, честное и правдивое.`;
+
+  preview.innerHTML = "Генерация резюме... ⏳";
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ТОКЕН_НАВ" // вставь свой OpenAI токен
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [{role: "user", content: prompt}],
+        max_tokens: 600
+      })
+    });
+
+    const data = await response.json();
+    const resumeText = data.choices[0].message.content;
+    preview.innerHTML = `<pre>${resumeText}</pre>`;
+
+    // Telegram
+    const message = `📝 Новая заявка с сайта
+👤 Имя: ${name}
+📩 Контакт: ${contact}
+💼 Резюме: ${resumeText}`;
+
+    fetch("https://api.telegram.org/bot8549707158:AAHZcjYx1QbfVA8rWv39WsuZeBoMDIM83M8/sendMessage", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({chat_id: "7301555090", text: message})
+    })
+    .then(res => console.log("Telegram отправлено!"))
+    .catch(err => console.error("Ошибка Telegram:", err));
+
+  } catch (err) {
+    preview.innerHTML = "Ошибка при генерации резюме.";
+    console.error(err);
+  }
+});
+
+// PDF download
+document.getElementById("downloadPDF").addEventListener("click", () => {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  doc.text(preview.innerText, 10, 10);
+  doc.save("resume.pdf");
+});
+</script>
 
 </body>
 </html>
