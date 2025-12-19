@@ -2,35 +2,38 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>AI Резюме Соз Онлайн</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Resume Generator / Создание Резюме</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- Hero -->
 <div class="hero">
-  <h1>AI Резюме Соз Онлайн</h1>
-  <p>Создай профессиональное резюме за несколько секунд!</p>
-  <a href="#form-section" class="btn-main">Начать сейчас</a>
+  <h1 id="hero-title">AI Резюме Соз Онлайн</h1>
+  <p id="hero-desc">Создай профессиональное резюме за несколько секунд!</p>
+  <a href="#form-section" class="btn-main" id="btn-lang">EN</a>
 </div>
 
+<!-- Form Card -->
 <div class="card" id="form-section">
-  <h2>Создать резюме</h2>
+  <h2 id="form-title">Создать резюме</h2>
   <form id="resumeForm">
-    <label>Имя:</label>
-    <input type="text" placeholder="Ваше имя" required>
-    <label>Контакт (Телефон / Telegram / Email):</label>
-    <input type="text" placeholder="+992 XX XXX XX XX" required>
-    <label>Опыт / Мотивация:</label>
-    <textarea placeholder="Опишите ваш опыт, образование и цели" required></textarea>
-    <button type="submit">Создать резюме</button>
+    <label id="label-name">Имя / Name:</label>
+    <input type="text" placeholder="Ваше имя / Your Name" required>
+    <label id="label-contact">Контакт (Телефон / Telegram / Email):</label>
+    <input type="text" placeholder="+992 XX XXX XX XX or @username" required>
+    <label id="label-exp">Опыт / Мотивация / Experience / Motivation:</label>
+    <textarea placeholder="Опишите ваш опыт и цели / Describe your experience and goals" required></textarea>
+    <button type="submit" id="submit-btn">Создать резюме / Create Resume</button>
   </form>
 
   <div id="preview"></div>
-  <button id="downloadPDF">Скачать PDF</button>
+  <button id="downloadPDF">Скачать PDF / Download PDF</button>
 </div>
 
+<!-- jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="script.js"></script>
-
 </body>
 </html>
