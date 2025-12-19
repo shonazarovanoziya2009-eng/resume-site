@@ -1,106 +1,182 @@
+/* Универсал */
 * {
   box-sizing: border-box;
-}
-
-body {
   margin: 0;
+  padding: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: #f1f3f6;
-  color: #333;
 }
 
+/* Бади сайти умумӣ */
+body {
+  background: #f4f6fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Hero section — баннери аввали сайти тобнок */
 .hero {
   background: linear-gradient(135deg, #4f7cff, #6fb1ff);
   color: white;
-  padding: 80px 20px;
+  padding: 100px 20px;
   text-align: center;
+  border-radius: 0 0 50% 50% / 20%;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
 }
 
 .hero h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 15px;
 }
 
 .hero p {
-  font-size: 18px;
+  font-size: 20px;
   opacity: 0.95;
 }
 
 .btn-main {
   display: inline-block;
-  margin-top: 25px;
-  padding: 14px 30px;
+  margin-top: 30px;
+  padding: 16px 40px;
   background: white;
   color: #4f7cff;
   text-decoration: none;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 40px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+.btn-main:hover {
+  transform: translateY(-3px);
+  background: #eef3ff;
+  color: #3456c1;
 }
 
+/* Карточки — блоки информации */
 .card {
   background: white;
-  margin: 30px auto;
-  padding: 30px;
+  margin: 40px auto;
+  padding: 40px;
   max-width: 900px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .card.light {
   background: #f9fbff;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #2c3e50;
 }
 
+/* Сетка блоков */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
 .box {
   background: #eef3ff;
-  padding: 20px;
-  border-radius: 12px;
+  padding: 25px;
+  border-radius: 15px;
   text-align: center;
   font-weight: 500;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
+/* Список для кого подходит */
 .list {
   max-width: 500px;
-  margin: auto;
+  margin: 20px auto;
 }
-
 .list li {
-  margin: 10px 0;
-}
-
-form input,
-form textarea {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 15px;
-}
-
-form button {
-  width: 100%;
-  padding: 14px;
-  background: #4f7cff;
-  color: white;
-  border: none;
-  border-radius: 12px;
+  margin: 12px 0;
+  padding-left: 20px;
+  position: relative;
   font-size: 16px;
+}
+.list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #4f7cff;
   font-weight: bold;
 }
 
-footer {
-  text-align: center;
+/* Форма */
+form input,
+form textarea {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+form input:focus,
+form textarea:focus {
+  border-color: #4f7cff;
+  box-shadow: 0 0 10px rgba(79,124,255,0.2);
+  outline: none;
+}
+
+/* Кнопка формы */
+form button {
+  width: 100%;
+  padding: 16px;
+  background: #4f7cff;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+form button:hover {
+  background: #3a63d3;
+  transform: translateY(-3px);
+}
+
+/* Preview блока резюме */
+#preview {
+  margin-top: 25px;
+  background: #f7f9fc;
   padding: 20px;
-  color: #777;
+  border-radius: 15px;
+  white-space: pre-wrap;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+}
+
+/* Кнопка PDF */
+#downloadPDF {
+  margin-top: 15px;
+  padding: 16px;
+  background: #34c759;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#downloadPDF:hover {
+  background: #28a745;
+  transform: translateY(-3px);
 }
