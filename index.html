@@ -1,39 +1,367 @@
+~SMM, [22.12.2025 15:42]
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Resume Generator / Создание Резюме</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ResumeAI.pro — Resume that gets you hired</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* --- Умумӣ --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #2d3748;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    section {
+      padding: 80px 0;
+    }
+    h1, h2, h3 {
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: inline-block;
+      background: #4f46e5;
+      color: white;
+      padding: 14px 32px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #4338ca;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(79, 70, 229, 0.3);
+    }
+    .text-center {
+      text-align: center;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* --- Header --- */
+    header {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      padding: 100px 0 60px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+    .lang-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .lang-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+    .lang-btn.active {
+      background: white;
+      color: #4f46e5;
+    }
+
+    /* --- Features --- */
+    .features {
+      background: #f8fafc;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .feature-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    .feature-card i {
+      font-size: 2.2rem;
+      color: #4f46e5;
+      margin-bottom: 15px;
+    }
+
+    /* --- Samples --- */
+    .samples {
+      text-align: center;
+    }
+    .sample-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .sample-link {
+      background: #edf2f7;
+      padding: 10px 20px;
+      border-radius: 30px;
+      color: #4a5568;
+      text-decoration: none;
+      transition: background 0.3, color 0.1s;
+    }
+    .sample-link:hover {
+      background: #e2e8f0;
+    }
+
+    /* --- Pricing --- */
+    .pricing-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .pricing-card {
+      background: white;
+      border-radius: 16px;
+      padding: 40px 30px;
+      width: 300px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .pricing-card:hover {
+      transform: scale(1.03);
+    }
+    .pricing-card.popular {
+      border: 2px solid #4f46e5;
+      position: relative;
+
+~SMM, [22.12.2025 15:42]
+}
+    .popular::after {
+      content: attr(data-popular);
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4f46e5;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+    .price {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 20px 0;
+      color: #4f46e5;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: #1e293b;
+      color: #cbd5e1;
+      text-align: center;
+      padding: 30px 0;
+    }
+  </style>
 </head>
 <body>
 
-<!-- Hero -->
-<div class="hero">
-  <h1 id="hero-title">AI Резюме Соз Онлайн</h1>
-  <p id="hero-desc">Создай профессиональное резюме за несколько секунд!</p>
-  <a href="#form-section" class="btn-main" id="btn-lang">EN</a>
-</div>
+  <!-- Language Switch -->
+  <div class="lang-switch">
+    <button class="lang-btn active" data-lang="ru">RU</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
 
-<!-- Form Card -->
-<div class="card" id="form-section">
-  <h2 id="form-title">Создать резюме</h2>
-  <form id="resumeForm">
-    <label id="label-name">Имя / Name:</label>
-    <input type="text" placeholder="Ваше имя / Your Name" required>
-    <label id="label-contact">Контакт (Телефон / Telegram / Email):</label>
-    <input type="text" placeholder="+992 XX XXX XX XX or @username" required>
-    <label id="label-exp">Опыт / Мотивация / Experience / Motivation:</label>
-    <textarea placeholder="Опишите ваш опыт и цели / Describe your experience and goals" required></textarea>
-    <button type="submit" id="submit-btn">Создать резюме / Create Resume</button>
-  </form>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1 class="lang" data-key="title">ResumeAI.pro</h1>
+      <p class="lang" data-key="subtitle">Резюме, которое проходит ATS и нравится HR</p>
+      <a href="https://t.me/ResumeAI_pro_bot" class="btn lang" data-key="order-btn">📩 Заказать в Telegram</a>
+    </div>
+  </header>
 
-  <div id="preview"></div>
-  <button id="downloadPDF">Скачать PDF / Download PDF</button>
-</div>
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2 class="text-center fade-in lang" data-key="why-title">Почему ResumeAI?</h2>
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <i class="fas fa-robot"></i>
+          <h3 class="lang" data-key="feat1-title">ATS-совместимость</h3>
+          <p class="lang" data-key="feat1-desc">Ваше резюме пройдёт автоматические системы и дойдёт до HR.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <i class="fas fa-paint-brush"></i>
+          <h3 class="lang" data-key="feat2-title">Профессиональный дизайн</h3>
+          <p class="lang" data-key="feat2-desc">Современный, чистый и адаптированный под вашу сферу.</p>
+        </div>
+        <div class="feature-card fade-in">
+          <i class="fas fa-bolt"></i>
+          <h3 class="lang" data-key="feat3-title">24 часа</h3>
+          <p class="lang" data-key="feat3-desc">Утром заказали — вечером получили готовое резюме.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- jsPDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="script.js"></script>
+  <!-- Samples -->
+  <section class="samples">
+    <div class="container">
+      <h2 class="fade-in lang" data-key="samples-title">Примеры резюме</h2>
+      <div class="sample-links">
+        <a href="https://drive.google.com/file/d/1abc123/view" class="sample-link" target="_blank">IT (Developer)</a>
+        <a href="https://drive.google.com/file/d/2def456/view" class="sample-link" target="_blank">Marketing</a>
+        <a href="https://drive.google.com/file/d/3ghi789/view" class="sample-link" target="_blank">Finance</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing">
+    <div class="container">
+      <h2 class="text-center fade-in lang" data-key="pricing-title">Цены</h2>
+      <div class="pricing-cards">
+        <div class="pricing-card fade-in">
+          <h3 class="lang" data-key="basic">Базовый</h3>
+          <div class="price">490 ₽</div>
+          <ul style="text-align: left; max-width: 250px; margin: 0 auto;">
+            <li>✅ Полный текст</li>
+            <li>✅ ATS-оптимизация</li>
+            <li>❌ Сопроводительное письмо</li>
+          </ul>
+          <a href="https://t.me/ResumeAI_pro_bot?start=plan_basic" class="btn" style="margin-top: 20px; background: #e2e8f0; color: #4a5568;" data-key="order-btn2">Заказать</a>
+        </div>
+        <div class="pricing-card popular fade-in" data-popular="Популярный">
+          <h3 class="lang" data-key="premium">Премиум</h3>
+          <div class="price">1490 ₽</div>
+          <ul style="text-align: left; max-width: 250px; margin: 0 auto;">
+            <li>✅ Профессиональное резюме</li>
+            <li>✅ Сопроводительное письмо</li>
+            <li>✅ Анализ вакансии</li>
+            <li>✅ Оптимизация LinkedIn</li>
+          </ul>
+          <a href="https://t.me/ResumeAI_pro_bot?start=plan_premium" class="btn" data-key="order-btn3">Заказать</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+~SMM, [22.12.2025 15:42]
+<!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 ResumeAI.pro — Resume that gets you hired.</p>
+    </div>
+  </footer>
+
+  <script>
+    // --- Тарҷумаи матнҳо ---
+    const translations = {
+      ru: {
+        title: "ResumeAI.pro",
+        subtitle: "Резюме, которое проходит ATS и нравится HR",
+        "order-btn": "📩 Заказать в Telegram",
+        "why-title": "Почему ResumeAI?",
+        "feat1-title": "ATS-совместимость",
+        "feat1-desc": "Ваше резюме пройдёт автоматические системы и дойдёт до HR.",
+        "feat2-title": "Профессиональный дизайн",
+        "feat2-desc": "Современный, чистый и адаптированный под вашу сферу.",
+        "feat3-title": "24 часа",
+        "feat3-desc": "Утром заказали — вечером получили готовое резюме.",
+        "samples-title": "Примеры резюме",
+        "pricing-title": "Цены",
+        "basic": "Базовый",
+        "premium": "Премиум",
+        "order-btn2": "Заказать",
+        "order-btn3": "Заказать"
+      },
+      en: {
+        title: "ResumeAI.pro",
+        subtitle: "Resume that passes ATS and impresses HR",
+        "order-btn": "📩 Order via Telegram",
+        "why-title": "Why ResumeAI?",
+        "feat1-title": "ATS-Compatible",
+        "feat1-desc": "Your resume passes automated systems and reaches HR.",
+        "feat2-title": "Professional Design",
+        "feat2-desc": "Modern, clean, and tailored to your industry.",
+        "feat3-title": "24 Hours",
+        "feat3-desc": "Order in the morning — get your resume by evening.",
+        "samples-title": "Resume Samples",
+        "pricing-title": "Pricing",
+        "basic": "Basic",
+        "premium": "Premium",
+        "order-btn2": "Order",
+        "order-btn3": "Order"
+      }
+    };
+
+    // --- Тағйирдиҳии забон ---
+    let currentLang = 'ru';
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentLang = btn.dataset.lang;
+        updateTexts();
+      });
+    });
+
+    function updateTexts() {
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.dataset.key;
+        if (translations[currentLang][key]) {
+          el.textContent = translations[currentLang][key];
+        }
+      });
+
+      // Тағйир додани title
+      document.title = currentLang === 'ru' ? 'ResumeAI.pro — Резюме, которое нанимает' : 'ResumeAI.pro — Resume that gets you hired';
+    }
+
+    // --- Аниматсия ---
+    document.querySelectorAll('.fade-in').forEach((el, i) => {
+      el.style.animationDelay = (i * 0.1) + 's';
+    });
+  </script>
 </body>
 </html>
