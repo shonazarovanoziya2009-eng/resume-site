@@ -1,438 +1,133 @@
-~SMM, [22.12.2025 17:54]
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Resume Noziya — Professional Resume Service</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #ffffff;
-      color: #1e293b;
-      line-height: 1.6;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    header {
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      color: white;
-      padding: 100px 0 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    header::before {
-      content: "";
-      position: absolute;
-      top: -50px;
-      right: -50px;
-      width: 200px;
-      height: 200px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50%;
-    }
-    header h1 {
-      font-size: 3.2rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-      letter-spacing: -0.5px;
-    }
-    header p {
-      font-size: 1.3rem;
-      max-width: 700px;
-      margin: 0 auto 30px;
-      opacity: 0.95;
-      font-weight: 400;
-    }
-    .lang-switch {
-      position: absolute;
-      top: 25px;
-      right: 25px;
-    }
-    .lang-btn {
-      background: rgba(255,255,255,0.2);
-      color: white;
-      border: none;
-      padding: 8px 20px;
-      border-radius: 30px;
-      cursor: pointer;
-      margin-left: 8px;
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-    .lang-btn.active {
-      background: white;
-      color: #6366f1;
-    }
-    .lang-btn:hover {
-      background: rgba(255,255,255,0.3);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Noziya — Professional Resume Service</title>
 
-    section {
-      padding: 100px 0;
-    }
-    h2 {
-      text-align: center;
-      font-size: 2.4rem;
-      margin-bottom: 20px;
-      color: #334155;
-    }
-    .subtitle {
-      text-align: center;
-      color: #64748b;
-      margin-bottom: 60px;
-      font-size: 1.1rem;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-    /* About */
-    .about {
-      background: #f8fafc;
-    }
-    .about-content {
-      display: flex;
-      gap: 60px;
-      align-items: center;
-    }
-    .about-text {
-      flex: 1;
-    }
-    .about-text p {
-      margin-bottom: 20px;
-      font-size: 1.05rem;
-    }
-    .about-stats {
-      display: flex;
-      gap: 30px;
-      margin-top: 20px;
-    }
-    .stat {
-      text-align: center;
-    }
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #6366f1;
-    }
-
-    /* Form */
-    .form-section {
-      background: white;
-    }
-    form {
-      max-width: 700px;
-      margin: 0 auto;
-      background: white;
-      padding: 50px;
-      border-radius: 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-    }
-    .form-group {
-      margin-bottom: 28px;
-    }
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: 600;
-      color: #334155;
-      font-size: 1.05rem;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 16px;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      font-size: 16px;
-      background: #f8fafc;
-      transition: border-color 0.2s;
-    }
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      border-color: #8b5cf6;
-    }
-    textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-    .btn {
-      width: 100%;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      color: white;
-      border: none;
-      padding: 18px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-radius: 12px;
-      cursor: pointer;
-
-~SMM, [22.12.2025 17:54]
-transition: transform 0.2s, box-shadow 0.2s;
-      letter-spacing: 0.5px;
-    }
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
-    }
-    .note {
-      text-align: center;
-      margin-top: 20px;
-      color: #64748b;
-      font-size: 0.95rem;
-    }
-
-    /* Footer */
-    footer {
-      background: #0f172a;
-      color: #cbd5e1;
-      text-align: center;
-      padding: 40px 0;
-      font-size: 1rem;
-    }
-
-    @media (max-width: 768px) {
-      .about-content {
-        flex-direction: column;
-      }
-      header h1 {
-        font-size: 2.4rem;
-      }
-      form {
-        padding: 30px;
-      }
-    }
-  </style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f8fafc;color:#1e293b}
+header{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;padding:100px 20px;text-align:center}
+h1{font-size:3rem;margin-bottom:15px}
+p{opacity:.95}
+.container{max-width:900px;margin:auto;padding:60px 20px}
+form{background:white;padding:40px;border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,.08)}
+label{font-weight:600;margin-bottom:8px;display:block}
+input,textarea,select{
+  width:100%;padding:15px;margin-bottom:20px;
+  border-radius:12px;border:1px solid #e5e7eb;
+  background:#f9fafb;font-size:16px
+}
+button{
+  width:100%;padding:18px;
+  background:linear-gradient(135deg,#6366f1,#8b5cf6);
+  border:none;border-radius:14px;
+  color:white;font-size:18px;font-weight:700;
+  cursor:pointer
+}
+button:hover{opacity:.95}
+footer{background:#0f172a;color:#cbd5e1;text-align:center;padding:30px}
+.lang-switch{position:absolute;top:20px;right:20px}
+.lang-switch button{
+  background:white;color:#6366f1;border:none;
+  padding:8px 18px;border-radius:20px;
+  font-weight:600;cursor:pointer;margin-left:6px
+}
+</style>
 </head>
+
 <body>
 
-  <!-- Language Switch -->
-  <div class="lang-switch">
-    <button class="lang-btn active" data-lang="ru">RU</button>
-    <button class="lang-btn" data-lang="en">EN</button>
-  </div>
+<div class="lang-switch">
+  <button onclick="setLang('ru')">RU</button>
+  <button onclick="setLang('en')">EN</button>
+</div>
 
-  <!-- Hero -->
-  <header>
-    <div class="container">
-      <h1 class="lang" data-key="hero-title">Resume Noziya</h1>
-      <p class="lang" data-key="hero-sub">Профессиональные резюме, которые проходят ATS и получают приглашения на собеседования</p>
-    </div>
-  </header>
+<header>
+  <h1 id="title">Resume Noziya</h1>
+  <p id="subtitle">Профессиональные резюме, которые приводят к собеседованиям</p>
+</header>
 
-  <!-- About -->
-  <section class="about">
-    <div class="container">
-      <h2 class="lang" data-key="about-title">О сервисе / About the Service</h2>
-      <p class="subtitle lang" data-key="about-sub">Создаю резюме, которые работают — не просто красиво, а эффективно.</p>
-      <div class="about-content">
-        <div class="about-text">
-          <p class="lang" data-key="about-desc1">Привет! Меня зовут Нозия, и я специализируюсь на создании профессиональных резюме для IT, маркетинга, финансов, HR и других сфер.</p>
-          <p class="lang" data-key="about-desc2">Мои резюме проходят автоматические системы (ATS), нравятся HR и помогают клиентам получать приглашения на собеседования уже через несколько дней.</p>
-          <div class="about-stats">
-            <div class="stat">
-              <div class="stat-number">500+</div>
-              <div class="lang" data-key="stat1">Резюме / Resumes</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number">98%</div>
-              <div class="lang" data-key="stat2">Довольных клиентов / Happy Clients</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number">24ч</div>
-              <div class="lang" data-key="stat3">Срок выполнения / Delivery Time</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="container">
+  <form id="resumeForm">
+    <label id="l1">Имя</label>
+    <input id="firstName" required>
 
-  <!-- Form -->
-  <section class="form-section">
-    <div class="container">
-      <h2 class="lang" data-key="form-title">Закажите ваше резюме / Order Your Resume</h2>
-      <p class="subtitle lang" data-key="form-sub">Заполните форму — и я свяжусь с вами в Telegram</p>
-      <form id="resumeForm">
-        <div class="form-group">
-          <label class="lang" data-key="name-label">Имя / First Name</label>
-          <input type="text" id="firstName" required>
-        </div>
-        <div class="form-group">
-          <label class="lang" data-key="surname-label">Фамилия / Last Name</label>
-          <input type="text" id="lastName" required>
-        </div>
-        <div class="form-group">
-          <label class="lang" data-key="telegram-label">Telegram (@username или номер) / Telegram</label>
-          <input type="text" id="telegram" placeholder="@user или +79991234567" required>
-        </div>
-        <div class="form-group">
-          <label class="lang" data-key="details-label">Расскажите о себе (опыт, цель, сферу) / Tell me about yourself</label>
-          <textarea id="details" placeholder="Пример: 3 года в маркетинге, хочу расти как SMM-специалист..." required></textarea>
-        </div>
-        <div class="form-group">
-          <label class="lang" data-key="lang-label">Язык резюме / Resume Language</label>
+    <label id="l2">Фамилия</label>
+    <input id="lastName" required>
 
-~SMM, [22.12.2025 17:54]
-<select id="resumeLang" required>
-            <option value="ru">Русский / Russian</option>
-            <option value="en">English / Английский</option>
-          </select>
-        </div>
-        <button type="submit" class="btn lang" data-key="submit-btn">Заказать резюме / Order Resume</button>
-        <p class="note lang" data-key="note">После отправки вы перейдете в Telegram. Просто отправьте сгенерированное сообщение боту @resume_noziya_bot.</p>
-      </form>
-    </div>
-  </section>
+    <label id="l3">Telegram (@username или номер)</label>
+    <input id="telegram" placeholder="@username или +7999..." required>
 
-  <footer>
-    <div class="container">
-      <p>© 2025 Resume Noziya — Professional Resume Service</p>
-      <p>Создано с ❤️ для вашей карьеры / Crafted with ❤️ for your career</p>
-    </div>
-  </footer>
+    <label id="l4">Расскажите о себе</label>
+    <textarea id="details" required></textarea>
 
-  <script>
-    const translations = {
-      ru: {
-        "hero-title": "Resume Noziya",
-        "hero-sub": "Профессиональные резюме, которые проходят ATS и получают приглашения на собеседования",
-        "about-title": "О сервисе",
-        "about-sub": "Создаю резюме, которые работают — не просто красиво, а эффективно.",
-        "about-desc1": "Привет! Меня зовут Нозия, и я специализируюсь на создании профессиональных резюме для IT, маркетинга, финансов, HR и других сфер.",
-        "about-desc2": "Мои резюме проходят автоматические системы (ATS), нравятся HR и помогают клиентам получать приглашения на собеседования уже через несколько дней.",
-        "stat1": "Резюме",
-        "stat2": "Довольных клиентов",
-        "stat3": "Срок выполнения",
-        "form-title": "Закажите ваше резюме",
-        "form-sub": "Заполните форму — и я свяжусь с вами в Telegram",
-        "name-label": "Имя",
-        "surname-label": "Фамилия",
-        "telegram-label": "Telegram (@username или номер)",
-        "details-label": "Расскажите о себе (опыт, цель, сферу)",
-        "lang-label": "Язык резюме",
-        "submit-btn": "Заказать резюме",
-        "note": "После отправки вы перейдете в Telegram. Просто отправьте сгенерированное сообщение боту @resume_noziya_bot."
-      },
-      en: {
-        "hero-title": "Resume Noziya",
-        "hero-sub": "Professional resumes that pass ATS and get interview invites",
-        "about-title": "About the Service",
-        "about-sub": "I create resumes that work — not just beautiful, but effective.",
-        "about-desc1": "Hi! I’m Noziya, and I specialize in crafting professional resumes for IT, marketing, finance, HR, and more.",
-        "about-desc2": "My resumes pass automated systems (ATS), impress HR, and help clients land interviews within days.",
-        "stat1": "Resumes",
-        "stat2": "Happy Clients",
-        "stat3": "Delivery Time",
-        "form-title": "Order Your Resume",
-        "form-sub": "Fill out the form — and I’ll contact you on Telegram",
-        "name-label": "First Name",
-        "surname-label": "Last Name",
-        "telegram-label": "Telegram (@username or phone)",
-        "details-label": "Tell me about yourself (experience, goal, field)",
-        "lang-label": "Resume Language",
-        "submit-btn": "Order Resume",
-        "note": "After submitting, you’ll go to Telegram. Just send the generated message to @resume_noziya_bot."
-      }
-    };
+    <label id="l5">Язык резюме</label>
+    <select id="resumeLang">
+      <option value="ru">Русский</option>
+      <option value="en">English</option>
+    </select>
 
-    let currentLang = 'ru';
+    <button type="submit" id="btn">Заказать резюме</button>
+  </form>
+</div>
 
-    // Тағйирдиҳии забон
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentLang = btn.dataset.lang;
-        updateTexts();
-        updateTitle();
-      });
-    });
+<footer>
+  © 2025 Resume Noziya • Crafted with ❤️
+</footer>
 
-    // Навсозии матнҳо
-    function updateTexts() {
-      document.querySelectorAll('[data-key]').forEach(el => {
-        const key = el.dataset.key;
-        if (translations[currentLang][key]) {
-          el.textContent = translations[currentLang][key];
-        }
-      });
+<script>
+const BOT_TOKEN = "8549707158:AAHO0BkB_zu2NWGd-91pyToGSGxwLuARYrg";
+const CHAT_ID = "7301555090";
+let lang = "ru";
+
+function setLang(l){
+  lang=l;
+  document.getElementById("title").innerText =
+    l==="ru"?"Resume Noziya":"Resume Noziya";
+  document.getElementById("subtitle").innerText =
+    l==="ru"?"Профессиональные резюме, которые приводят к собеседованиям":
+             "Professional resumes that get interviews";
+  document.getElementById("l1").innerText=l==="ru"?"Имя":"First name";
+  document.getElementById("l2").innerText=l==="ru"?"Фамилия":"Last name";
+  document.getElementById("l3").innerText=l==="ru"?"Telegram (@username или номер)":"Telegram (@username or phone)";
+  document.getElementById("l4").innerText=l==="ru"?"Расскажите о себе":"Tell me about yourself";
+  document.getElementById("l5").innerText=l==="ru"?"Язык резюме":"Resume language";
+  document.getElementById("btn").innerText=l==="ru"?"Заказать резюме":"Order resume";
+}
+
+document.getElementById("resumeForm").addEventListener("submit",function(e){
+  e.preventDefault();
+
+  const text =
+`✨ NEW RESUME ORDER ✨
+
+👤 ${firstName.value} ${lastName.value}
+📩 Contact: ${telegram.value}
+🌍 Language: ${resumeLang.value}
+
+📝 Details:
+${details.value}`;
+
+  fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({chat_id:CHAT_ID,text:text})
+  })
+  .then(r=>{
+    if(r.ok){
+      alert(lang==="ru"?"✅ Заказ отправлен!":"✅ Order sent!");
+      resumeForm.reset();
+    }else{
+      alert("❌ Ошибка отправки");
     }
+  })
+  .catch(()=>alert("❌ Telegram не отвечает"));
+});
+</script>
 
-    // Навсозии sarlavha
-    function updateTitle() {
-      document.title = currentLang === 'ru' 
-        ? 'Resume Noziya — Профессиональные резюме' 
-        : 'Resume Noziya — Professional Resume Service';
-    }
-
-~SMM, [22.12.2025 17:54]
-// Форма
-    document.getElementById('resumeForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const firstName = document.getElementById('firstName').value.trim();
-      const lastName = document.getElementById('lastName').value.trim();
-      const telegram = document.getElementById('telegram').value.trim();
-      const details = document.getElementById('details').value.trim();
-      const resumeLang = document.getElementById('resumeLang').value;
-
-      let message = ✨ NEW RESUME ORDER!\n\n;
-      message += Name: ${firstName} ${lastName}\n;
-      message += Telegram: ${telegram}\n;
-      message += Resume Language: ${resumeLang === 'en' ? 'English' : 'Russian'}\n\n;
-      message += About client:\n${details}\n\n;
-      message += User ID: 7301555090\n;
-      message += Bot: @resume_noziaya_bot;
-
-      // Нусхабардорӣ
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(message).then(() => {
-          const botUrl = 'https://t.me/resume_noziya_bot';
-          alert(
-            currentLang === 'ru'
-              ? '✅ Заказ скопирован!\n\nТеперь:\n1. Откройте Telegram\n2. Перейдите в @resume_noziya_bot\n3. Вставьте и отправьте это сообщение.'
-              : '✅ Order copied!\n\nNow:\n1. Open Telegram\n2. Go to @resume_noziya_bot\n3. Paste and send this message.'
-          );
-          window.open(botUrl, '_blank');
-        }).catch(() => {
-          fallbackCopy(message);
-        });
-      } else {
-        fallbackCopy(message);
-      }
-    });
-
-    function fallbackCopy(text) {
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed';
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      alert(
-        currentLang === 'ru'
-          ? '✅ Текст скопирован! Откройте @resume_noziya_bot и отправьте его.'
-          : '✅ Text copied! Open @resume_noziya_bot and send it.'
-      );
-      window.open('https://t.me/resume_noziya_bot', '_blank');
-    }
-
-    // Аниматсияи оғоз
-    document.body.style.opacity = 0;
-    setTimeout(() => {
-      document.body.style.transition = 'opacity 0.8s';
-      document.body.style.opacity = 1;
-    }, 100);
-  </script>
 </body>
 </html>
