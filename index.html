@@ -1,131 +1,112 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resume Noziya — Professional Resume Service</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:#f8fafc;color:#1e293b}
-header{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;padding:100px 20px;text-align:center}
-h1{font-size:3rem;margin-bottom:15px}
-p{opacity:.95}
-.container{max-width:900px;margin:auto;padding:60px 20px}
-form{background:white;padding:40px;border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,.08)}
-label{font-weight:600;margin-bottom:8px;display:block}
-input,textarea,select{
-  width:100%;padding:15px;margin-bottom:20px;
-  border-radius:12px;border:1px solid #e5e7eb;
-  background:#f9fafb;font-size:16px
-}
-button{
-  width:100%;padding:18px;
-  background:linear-gradient(135deg,#6366f1,#8b5cf6);
-  border:none;border-radius:14px;
-  color:white;font-size:18px;font-weight:700;
-  cursor:pointer
-}
-button:hover{opacity:.95}
-footer{background:#0f172a;color:#cbd5e1;text-align:center;padding:30px}
-.lang-switch{position:absolute;top:20px;right:20px}
-.lang-switch button{
-  background:white;color:#6366f1;border:none;
-  padding:8px 18px;border-radius:20px;
-  font-weight:600;cursor:pointer;margin-left:6px
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume Noziya — Professional Resume Service</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* === СТИЛИ БЕ ТАҒЙИР === */
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#fff;color:#1e293b}
+    .container{max-width:1100px;margin:auto;padding:0 20px}
+    header{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:100px 0 80px;text-align:center;position:relative}
+    header h1{font-size:3.2rem;font-weight:800}
+    header p{font-size:1.3rem;opacity:.95}
+    section{padding:100px 0}
+    .about{background:#f8fafc}
+    form{max-width:700px;margin:auto;background:#fff;padding:50px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.08)}
+    label{font-weight:600;margin-bottom:8px;display:block}
+    input,textarea,select{width:100%;padding:16px;margin-bottom:20px;border-radius:12px;border:1px solid #e2e8f0;background:#f8fafc}
+    button{width:100%;padding:18px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:1.1rem}
+    footer{background:#0f172a;color:#cbd5e1;text-align:center;padding:40px}
+  </style>
 </head>
 
 <body>
 
-<div class="lang-switch">
-  <button onclick="setLang('ru')">RU</button>
-  <button onclick="setLang('en')">EN</button>
-</div>
-
 <header>
-  <h1 id="title">Resume Noziya</h1>
-  <p id="subtitle">Профессиональные резюме, которые приводят к собеседованиям</p>
+  <div class="container">
+    <h1>Resume Noziya</h1>
+    <p>Профессиональные резюме, которые проходят ATS</p>
+  </div>
 </header>
 
-<div class="container">
-  <form id="resumeForm">
-    <label id="l1">Имя</label>
-    <input id="firstName" required>
+<section class="form-section">
+  <div class="container">
+    <form id="resumeForm">
+      <label>Имя</label>
+      <input id="firstName" required>
 
-    <label id="l2">Фамилия</label>
-    <input id="lastName" required>
+      <label>Фамилия</label>
+      <input id="lastName" required>
 
-    <label id="l3">Telegram (@username или номер)</label>
-    <input id="telegram" placeholder="@username или +7999..." required>
+      <label>Telegram (@username или номер)</label>
+      <input id="telegram" required>
 
-    <label id="l4">Расскажите о себе</label>
-    <textarea id="details" required></textarea>
+      <label>Расскажите о себе</label>
+      <textarea id="details" required></textarea>
 
-    <label id="l5">Язык резюме</label>
-    <select id="resumeLang">
-      <option value="ru">Русский</option>
-      <option value="en">English</option>
-    </select>
+      <label>Язык резюме</label>
+      <select id="resumeLang">
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+      </select>
 
-    <button type="submit" id="btn">Заказать резюме</button>
-  </form>
-</div>
+      <button type="submit">Заказать резюме</button>
+    </form>
+  </div>
+</section>
 
 <footer>
-  © 2025 Resume Noziya • Crafted with ❤️
+  © 2025 Resume Noziya
 </footer>
 
 <script>
+/* === TELEGRAM BOT DATA === */
 const BOT_TOKEN = "8549707158:AAHO0BkB_zu2NWGd-91pyToGSGxwLuARYrg";
 const CHAT_ID = "7301555090";
-let lang = "ru";
 
-function setLang(l){
-  lang=l;
-  document.getElementById("title").innerText =
-    l==="ru"?"Resume Noziya":"Resume Noziya";
-  document.getElementById("subtitle").innerText =
-    l==="ru"?"Профессиональные резюме, которые приводят к собеседованиям":
-             "Professional resumes that get interviews";
-  document.getElementById("l1").innerText=l==="ru"?"Имя":"First name";
-  document.getElementById("l2").innerText=l==="ru"?"Фамилия":"Last name";
-  document.getElementById("l3").innerText=l==="ru"?"Telegram (@username или номер)":"Telegram (@username or phone)";
-  document.getElementById("l4").innerText=l==="ru"?"Расскажите о себе":"Tell me about yourself";
-  document.getElementById("l5").innerText=l==="ru"?"Язык резюме":"Resume language";
-  document.getElementById("btn").innerText=l==="ru"?"Заказать резюме":"Order resume";
-}
-
-document.getElementById("resumeForm").addEventListener("submit",function(e){
+/* === FORM SUBMIT === */
+document.getElementById("resumeForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  const text =
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName  = document.getElementById("lastName").value.trim();
+  const telegram  = document.getElementById("telegram").value.trim();
+  const details   = document.getElementById("details").value.trim();
+  const lang      = document.getElementById("resumeLang").value;
+
+  const message =
 `✨ NEW RESUME ORDER ✨
 
-👤 ${firstName.value} ${lastName.value}
-📩 Contact: ${telegram.value}
-🌍 Language: ${resumeLang.value}
+👤 Name: ${firstName} ${lastName}
+📩 Telegram: ${telegram}
+🌍 Language: ${lang}
 
-📝 Details:
-${details.value}`;
+📝 About:
+${details}`;
 
   fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
     method:"POST",
     headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({chat_id:CHAT_ID,text:text})
+    body:JSON.stringify({
+      chat_id: CHAT_ID,
+      text: message
+    })
   })
-  .then(r=>{
-    if(r.ok){
-      alert(lang==="ru"?"✅ Заказ отправлен!":"✅ Order sent!");
-      resumeForm.reset();
+  .then(res=>{
+    if(res.ok){
+      alert("✅ Заказ отправлен в Telegram!");
+      document.getElementById("resumeForm").reset();
     }else{
       alert("❌ Ошибка отправки");
     }
   })
-  .catch(()=>alert("❌ Telegram не отвечает"));
+  .catch(()=>{
+    alert("❌ Telegram API не отвечает");
+  });
 });
 </script>
 
