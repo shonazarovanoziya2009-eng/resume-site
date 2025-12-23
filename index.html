@@ -5,110 +5,565 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Resume Noziya — Professional Resume Service</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* === СТИЛИ БЕ ТАҒЙИР === */
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Inter',sans-serif;background:#fff;color:#1e293b}
-    .container{max-width:1100px;margin:auto;padding:0 20px}
-    header{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;padding:100px 0 80px;text-align:center;position:relative}
-    header h1{font-size:3.2rem;font-weight:800}
-    header p{font-size:1.3rem;opacity:.95}
-    section{padding:100px 0}
-    .about{background:#f8fafc}
-    form{max-width:700px;margin:auto;background:#fff;padding:50px;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.08)}
-    label{font-weight:600;margin-bottom:8px;display:block}
-    input,textarea,select{width:100%;padding:16px;margin-bottom:20px;border-radius:12px;border:1px solid #e2e8f0;background:#f8fafc}
-    button{width:100%;padding:18px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:1.1rem}
-    footer{background:#0f172a;color:#cbd5e1;text-align:center;padding:40px}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .lang-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      padding: 5px;
+      z-index: 10;
+    }
+
+    .lang-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 50px;
+      background: transparent;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .lang-btn.active {
+      background: white;
+      color: #6366f1;
+    }
+
+    header {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      padding: 120px 0 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      z-index: 2;
+      position: relative;
+    }
+
+    header p {
+      font-size: 1.4rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
+      z-index: 2;
+      position: relative;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .about, .services, .pricing, .portfolio, .form-section {
+      background: #f8fafc;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 60px;
+      color: #0f172a;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #64748b;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+
+    .content-box {
+      background: white;
+      padding: 60px;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .content-box p {
+      font-size: 1.1rem;
+      color: #475569;
+      margin-bottom: 20px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: #f1f5f9;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .feature-card i {
+      font-size: 2.5rem;
+      color: #6366f1;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: #0f172a;
+    }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .price-card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+      border: 2px solid #e2e8f0;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .price-card:hover {
+      transform: translateY(-10px);
+      border-color: #6366f1;
+    }
+
+    .price-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #0f172a;
+    }
+
+    .price-card .price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #6366f1;
+      margin: 20px 0;
+    }
+
+    .price-card ul {
+      list-style: none;
+      margin: 30px 0;
+    }
+
+    .price-card li {
+      padding: 10px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .portfolio-item {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .portfolio-item .desc {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .portfolio-item .desc h4 {
+      font-size: 1.3rem;
+      color: #0f172a;
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    form {
+      background: white;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: block;
+      color: #0f172a;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 16px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      text-align: center;
+      padding: 40px;
+    }
+
+    /* Скрытые элементы для языков */
+    .lang-content {
+      display: none;
+    }
+
+    .lang-content.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      header p {
+        font-size: 1.1rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .content-box {
+        padding: 40px 20px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="container">
-    <h1>Resume Noziya</h1>
-    <p>Профессиональные резюме, которые проходят ATS</p>
-  </div>
-</header>
+  <header>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="ru">RU</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <div class="container">
+      <h1>Resume Noziya</h1>
+      <p class="lang-content active" data-lang="ru">Профессиональные резюме, которые проходят ATS</p>
+      <p class="lang-content" data-lang="en">Professional ATS-compliant resumes</p>
+    </div>
+  </header>
 
-<section class="form-section">
-  <div class="container">
-    <form id="resumeForm">
-      <label>Имя</label>
-      <input id="firstName" required>
+  <section class="section about">
+    <div class="container">
+      <h2 class="section-title">О себе / About Us</h2>
+      <div class="content-box">
+        <div class="lang-content active" data-lang="ru">
+          <p>Мы — команда профессионалов, специализирующихся на создании современных, эффективных и привлекательных резюме, которые помогут вам выделиться среди конкурентов и пройти автоматические системы отбора (ATS).</p>
+          <p>Наша цель — помочь вам получить интервью мечты. Мы создаем резюме, которые не только выглядят безупречно, но и работают эффективно, подчеркивая ваши сильные стороны и достижения.</p>
+        </div>
+        <div class="lang-content" data-lang="en">
+          <p>We are a team of professionals specializing in creating modern, effective, and attractive resumes that help you stand out from the competition and pass through Applicant Tracking Systems (ATS).</p>
+          <p>Our goal is to help you land your dream interview. We create resumes that not only look flawless but also work effectively, highlighting your strengths and achievements.</p>
+        </div>
 
-      <label>Фамилия</label>
-      <input id="lastName" required>
+        <h3 class="section-title">Что мы делаем / What We Do</h3>
+        <div class="lang-content active" data-lang="ru">
+          <p>Мы разрабатываем резюме, адаптированные под конкретные вакансии, используя ключевые слова и форматирование, которые обеспечивают высокую читаемость для систем ATS. Мы анализируем ваш опыт и навыки, чтобы создать резюме, которое будет работать на вас.</p>
+        </div>
+        <div class="lang-content" data-lang="en">
+          <p>We develop resumes tailored to specific job postings, using keywords and formatting that ensure high readability for ATS systems. We analyze your experience and skills to create a resume that works for you.</p>
+        </div>
 
-      <label>Telegram (@username или номер)</label>
-      <input id="telegram" required>
+        <div class="features">
+          <div class="feature-card">
+            <i class="fas fa-file-alt"></i>
+            <h3 class="lang-content active" data-lang="ru">ATS-совместимость</h3>
+            <h3 class="lang-content" data-lang="en">ATS Compatibility</h3>
+            <p class="lang-content active" data-lang="ru">Ваши резюме пройдут автоматические фильтры</p>
+            <p class="lang-content" data-lang="en">Your resumes will pass through automatic filters</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-bullseye"></i>
+            <h3 class="lang-content active" data-lang="ru">Целевое оформление</h3>
+            <h3 class="lang-content" data-lang="en">Targeted Design</h3>
+            <p class="lang-content active" data-lang="ru">Под конкретную вакансию и отрасль</p>
+            <p class="lang-content" data-lang="en">Tailored for specific job and industry</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-star"></i>
+            <h3 class="lang-content active" data-lang="ru">Профессиональный стиль</h3>
+            <h3 class="lang-content" data-lang="en">Professional Style</h3>
+            <p class="lang-content active" data-lang="ru">Современный и запоминающийся дизайн</p>
+            <p class="lang-content" data-lang="en">Modern and memorable design</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <label>Расскажите о себе</label>
-      <textarea id="details" required></textarea>
+  <section class="section pricing">
+    <div class="container">
+      <h2 class="section-title">Цены / Pricing</h2>
+      <div class="pricing-cards">
+        <div class="price-card">
+          <h3 class="lang-content active" data-lang="ru">Стандартное резюме</h3>
+          <h3 class="lang-content" data-lang="en">Standard Resume</h3>
+          <div class="price">100 ₽</div>
+          <ul>
+            <li class="lang-content active" data-lang="ru">Современный дизайн</li>
+            <li class="lang-content" data-lang="en">Modern design</li>
+            <li class="lang-content active" data-lang="ru">Поддержка ATS</li>
+            <li class="lang-content" data-lang="en">ATS support</li>
+            <li class="lang-content active" data-lang="ru">До 2 правок</li>
+            <li class="lang-content" data-lang="en">Up to 2 revisions</li>
+            <li class="lang-content active" data-lang="ru">Доставка за 24 часа</li>
+            <li class="lang-content" data-lang="en">Delivery in 24 hours</li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <h3 class="lang-content active" data-lang="ru">Премиум резюме</h3>
+          <h3 class="lang-content" data-lang="en">Premium Resume</h3>
+          <div class="price">500 ₽</div>
+          <ul>
+            <li class="lang-content active" data-lang="ru">Эксклюзивный дизайн</li>
+            <li class="lang-content" data-lang="en">Exclusive design</li>
+            <li class="lang-content active" data-lang="ru">Полная оптимизация под ATS</li>
+            <li class="lang-content" data-lang="en">Full ATS optimization</li>
+            <li class="lang-content active" data-lang="ru">Неограниченные правки</li>
+            <li class="lang-content" data-lang="en">Unlimited revisions</li>
+            <li class="lang-content active" data-lang="ru">Сопроводительное письмо</li>
+            <li class="lang-content" data-lang="en">Cover letter included</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <label>Язык резюме</label>
-      <select id="resumeLang">
-        <option value="ru">Русский</option>
-        <option value="en">English</option>
-      </select>
+  <section class="section portfolio">
+    <div class="container">
+      <h2 class="section-title">Примеры / Portfolio</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://placehold.co/350x250/6366f1/white?text=IT+Resume" alt="IT Resume Sample">
+          <div class="desc">
+            <h4 class="lang-content active" data-lang="ru">IT Резюме</h4>
+            <h4 class="lang-content" data-lang="en">IT Resume</h4>
+            <p class="lang-content active" data-lang="ru">Для специалистов в области технологий</p>
+            <p class="lang-content" data-lang="en">For technology professionals</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://placehold.co/350x250/8b5cf6/white?text=Finance+Resume" alt="Finance Resume Sample">
+          <div class="desc">
+            <h4 class="lang-content active" data-lang="ru">Финансовое Резюме</h4>
+            <h4 class="lang-content" data-lang="en">Finance Resume</h4>
+            <p class="lang-content active" data-lang="ru">Для финансовых аналитиков и менеджеров</p>
+            <p class="lang-content" data-lang="en">For financial analysts and managers</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://placehold.co/350x250/0ea5e9/white?text=Marketing+Resume" alt="Marketing Resume Sample">
+          <div class="desc">
+            <h4 class="lang-content active" data-lang="ru">Маркетинговое Резюме</h4>
+            <h4 class="lang-content" data-lang="en">Marketing Resume</h4>
+            <p class="lang-content active" data-lang="ru">Для специалистов по маркетингу</p>
+            <p class="lang-content" data-lang="en">For marketing specialists</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <button type="submit">Заказать резюме</button>
-    </form>
-  </div>
-</section>
+  <section class="section form-section">
+    <div class="container">
+      <h2 class="section-title">Заказать / Order</h2>
+      <div class="form-container">
+        <form id="resumeForm">
+          <label class="lang-content active" data-lang="ru">Имя</label>
+          <label class="lang-content" data-lang="en">First Name</label>
+          <input id="firstName" required>
 
-<footer>
-  © 2025 Resume Noziya
-</footer>
+          <label class="lang-content active" data-lang="ru">Фамилия</label>
+          <label class="lang-content" data-lang="en">Last Name</label>
+          <input id="lastName" required>
 
-<script>
-/* === TELEGRAM BOT DATA === */
-const BOT_TOKEN = "8549707158:AAHO0BkB_zu2NWGd-91pyToGSGxwLuARYrg";
-const CHAT_ID = "7301555090";
+          <label class="lang-content active" data-lang="ru">Telegram (@username или номер)</label>
+          <label class="lang-content" data-lang="en">Telegram (@username or number)</label>
+          <input id="telegram" required>
 
-/* === FORM SUBMIT === */
-document.getElementById("resumeForm").addEventListener("submit", function(e){
-  e.preventDefault();
+          <label class="lang-content active" data-lang="ru">Расскажите о себе</label>
+          <label class="lang-content" data-lang="en">Tell us about yourself</label>
+          <textarea id="details" required rows="4"></textarea>
 
-  const firstName = document.getElementById("firstName").value.trim();
-  const lastName  = document.getElementById("lastName").value.trim();
-  const telegram  = document.getElementById("telegram").value.trim();
-  const details   = document.getElementById("details").value.trim();
-  const lang      = document.getElementById("resumeLang").value;
+          <label class="lang-content active" data-lang="ru">Язык резюме</label>
+          <label class="lang-content" data-lang="en">Resume Language</label>
+          <select id="resumeLang">
+            <option value="ru" class="lang-content active" data-lang="ru">Русский</option>
+            <option value="ru" class="lang-content" data-lang="en">Russian</option>
+            <option value="en" class="lang-content active" data-lang="ru">English</option>
+            <option value="en" class="lang-content" data-lang="en">English</option>
+          </select>
 
-  const message =
-`✨ NEW RESUME ORDER ✨
+          <button type="submit" class="lang-content active" data-lang="ru">Заказать резюме</button>
+          <button type="submit" class="lang-content" data-lang="en">Order Resume</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-👤 Name: ${firstName} ${lastName}
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Resume Noziya. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* === TELEGRAM BOT DATA === */
+    const BOT_TOKEN = "8549707158:AAHO0BkB_zu2NWGd-91pyToGSGxwLuARYrg";
+    const CHAT_ID = "7301555090";
+
+    // Переключение языка
+    document.querySelectorAll('.lang-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        // Обновить активные кнопки
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const selectedLang = button.getAttribute('data-lang');
+
+        // Показать контент для выбранного языка
+        document.querySelectorAll('.lang-content').forEach(content => {
+          if(content.getAttribute('data-lang') === selectedLang) {
+            content.classList.add('active');
+          } else {
+            content.classList.remove('active');
+          }
+        });
+
+        // Обновить язык в селекте формы
+        const resumeLangSelect = document.getElementById('resumeLang');
+        // Просто установим значение, соответствующее выбранному языку интерфейса
+        if (selectedLang === 'en') {
+          // Найдем опцию "English"
+          for(let option of resumeLangSelect.options) {
+            if(option.text.includes('English')) {
+              option.selected = true;
+              break;
+            }
+          }
+        } else {
+          // Найдем опцию "Русский"
+          for(let option of resumeLangSelect.options) {
+            if(option.text.includes('Русский')) {
+              option.selected = true;
+              break;
+            }
+          }
+        }
+      });
+    });
+
+    /* === FORM SUBMIT === */
+    document.getElementById("resumeForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName  = document.getElementById("lastName").value.trim();
+      const telegram  = document.getElementById("telegram").value.trim();
+      const details   = document.getElementById("details").value.trim();
+      const lang      = document.getElementById("resumeLang").value;
+
+      const message =
+`✨ НОВЫЙ ЗАКАЗ РЕЗЮМЕ ✨ / ✨ NEW RESUME ORDER ✨
+
+👤 Имя / Name: ${firstName} ${lastName}
 📩 Telegram: ${telegram}
-🌍 Language: ${lang}
+🌍 Язык резюме / Resume Language: ${lang}
 
-📝 About:
+📝 О себе / About:
 ${details}`;
 
-  fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      chat_id: CHAT_ID,
-      text: message
-    })
-  })
-  .then(res=>{
-    if(res.ok){
-      alert("✅ Заказ отправлен в Telegram!");
-      document.getElementById("resumeForm").reset();
-    }else{
-      alert("❌ Ошибка отправки");
-    }
-  })
-  .catch(()=>{
-    alert("❌ Telegram API не отвечает");
-  });
-});
-</script>
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message
+        })
+      })
+      .then(res=>{
+        if(res.ok){
+          alert("✅ Заказ отправлен в Telegram! / ✅ Order sent to Telegram!");
+          document.getElementById("resumeForm").reset();
+        }else{
+          alert("❌ Ошибка отправки / ❌ Sending error");
+        }
+      })
+      .catch(()=>{
+        alert("❌ Telegram API не отвечает / ❌ Telegram API is not responding");
+      });
+    });
+  </script>
 
 </body>
-</html>
+  </html>
